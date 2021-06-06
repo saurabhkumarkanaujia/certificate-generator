@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRM</title>
+{% include 'web-css.html' %}
+<style type="text/css">
+	
+</style>
+</head> 
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="img-thumbnail pd_reg">
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} alert-error">{{ message }}</div>
+                    {% endfor %}
+                    <form action="{% url 'add_new' %}" method="POST">
+                        <h2>Enter User Details</h2>
+                        <hr>
+                        {% csrf_token %}                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="college" placeholder="College Name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="dept" placeholder="Department Name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="start" placeholder="Start Date" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="end" placeholder="End Date" required="required">
+                        </div>        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-lg">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'add_new' %}" class="btn btn-success">User Details</a>
+            </div>
+        </div>
+    </div>
+{% include 'web-js.html' %}
+</body>
+</html>                                                        
